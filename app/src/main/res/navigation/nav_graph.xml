@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/SignInFragment">
+
+    <fragment
+        android:id="@+id/SignInFragment"
+        android:name="com.example.diplomasecond.SignInFragment"
+        android:label="fragment__sign_in"
+        tools:layout="@layout/fragment_sign_in">
+        <action
+            android:id="@+id/action_SignInFragment_to_WorkFragment"
+            app:destination="@id/WorkFragment" />
+        <action
+            android:id="@+id/action_SignInFragment_to_SignUpFragment"
+            app:destination="@id/SignUpFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/SignUpFragment"
+        android:name="com.example.diplomasecond.SignUpFragment"
+        android:label="fragment__sign_up"
+        tools:layout="@layout/fragment_sign_up">
+        <action
+            android:id="@+id/action_SignUpFragment_to_WorkFragment"
+            app:destination="@id/WorkFragment" />
+        <action
+            android:id="@+id/action_SignUpFragment_to_SignInFragment"
+            app:destination="@id/SignInFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/WorkFragment"
+        android:name="com.example.diplomasecond.WorkFragment"
+        android:label="fragment__work"
+        tools:layout="@layout/fragment_work">
+        <action
+            android:id="@+id/action_WorkFragment_to_SignInFragment"
+            app:destination="@id/SignInFragment" />
+    </fragment>
+</navigation>
