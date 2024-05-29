@@ -1,7 +1,8 @@
-package com.example.diplomasecond
+package com.example.diplomasecond.UI
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.diplomasecond.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
