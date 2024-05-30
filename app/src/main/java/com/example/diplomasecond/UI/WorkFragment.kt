@@ -39,7 +39,7 @@ class WorkFragment : Fragment() {
             }
         }
 
-        viewModelClient.powerOn.observe(viewLifecycleOwner) {
+        viewModelClient.powerOn.observe(viewLifecycleOwner) {0
             binding.powerImage.isEnabled = true
             viewModelClient.updateConnectionText(power = it, connectionText = binding.connectionStatusText)
         }
