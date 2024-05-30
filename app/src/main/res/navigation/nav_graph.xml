@@ -3,39 +3,35 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/SignInFragment">
+    app:startDestination="@id/loginFragment">
+
 
     <fragment
-        android:id="@+id/SignInFragment"
-        android:name="com.example.diplomasecond.UI.SignInFragment"
-        android:label="fragment__sign_in"
-        tools:layout="@layout/fragment_sign_in">
-        <action
-            android:id="@+id/action_SignInFragment_to_WorkFragment"
-            app:destination="@id/WorkFragment" />
-        <action
-            android:id="@+id/action_SignInFragment_to_SignUpFragment"
-            app:destination="@id/SignUpFragment" />
+        android:id="@+id/settingsFragment"
+        android:name="com.example.scheduleapp.UI.SettingsFragment"
+        android:label="SettingsFragment"
+        tools:layout="@layout/fragment_settings" >
     </fragment>
     <fragment
-        android:id="@+id/SignUpFragment"
-        android:name="com.example.diplomasecond.UI.SignUpFragment"
-        android:label="fragment__sign_up"
-        tools:layout="@layout/fragment_sign_up">
+        android:id="@+id/loginFragment"
+        android:name="com.example.scheduleapp.UI.LoginFragment"
+        android:label="loginFragment"
+        tools:layout="@layout/fragment_login" >
         <action
-            android:id="@+id/action_SignUpFragment_to_WorkFragment"
-            app:destination="@id/WorkFragment" />
-        <action
-            android:id="@+id/action_SignUpFragment_to_SignInFragment"
-            app:destination="@id/SignInFragment" />
+            android:id="@+id/action_loginFragment_to_registrationFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true"
+            app:destination="@id/registrationFragment" />
     </fragment>
     <fragment
-        android:id="@+id/WorkFragment"
-        android:name="com.example.diplomasecond.UI.WorkFragment"
-        android:label="fragment__work"
-        tools:layout="@layout/fragment_work">
+        android:id="@+id/registrationFragment"
+        android:name="com.example.scheduleapp.UI.RegistrationFragment"
+        android:label="RegistrationFragment"
+        tools:layout="@layout/fragment_registration" >
         <action
-            android:id="@+id/action_WorkFragment_to_SignInFragment"
-            app:destination="@id/SignInFragment" />
+            android:id="@+id/action_registrationFragment_to_loginFragment"
+            app:popUpTo="@id/registrationFragment"
+            app:popUpToInclusive="true"
+            app:destination="@id/loginFragment" />
     </fragment>
 </navigation>
