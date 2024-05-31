@@ -3,9 +3,13 @@ package com.example.placementapp.UI
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.example.placementapp.data.Constants.APP_PREFERENCES_PUSHES
+import androidx.navigation.findNavController
+import com.example.placementapp.R
 import com.example.placementapp.data.Constants.APP_PREFERENCES_STAY
 import com.example.placementapp.databinding.ActivityMainBinding
 import com.example.placementapp.viewmodels.MainActivityViewModel
@@ -24,6 +28,25 @@ class MainActivity : AppCompatActivity() {
         supportActionBar!!.setBackgroundDrawable(ColorDrawable(Color.parseColor("#05080D")))
 
         viewModel.editPreferences(APP_PREFERENCES_STAY, viewModel.getPreference(APP_PREFERENCES_STAY, true))
-        viewModel.editPreferences(APP_PREFERENCES_PUSHES, viewModel.getPreference(APP_PREFERENCES_PUSHES, true))
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.signOut -> {
+                if (viewModel.isUserSingedIn()) {
+                    viewModel.signOut()
+                    //viewModel.editPreferences(APP_PREFERENCES_STAY, false)
+                    binding.container.findNavController().navigate(R.id.SignInFragment)
+                } else {
+                    Log.d("TAG", "Refusing to sign out.")
+                }
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

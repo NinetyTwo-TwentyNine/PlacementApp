@@ -1,28 +1,33 @@
-package com.example.mqtt
+package com.example.placementapp
 
+import android.content.Context
 import android.util.Log
 import android.widget.TextView
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.placementapp.data.Constants.MQTT_TOPIC_BRIGHTNESS
-import com.example.placementapp.data.Constants.MQTT_TOPIC_COLOR
+import com.example.placementapp.data.Constants.MQTT_CLIENT_ID
+import com.example.placementapp.data.Constants.MQTT_SERVER_PORT
+import com.example.placementapp.data.Constants.MQTT_SERVER_URI
 import com.example.placementapp.data.Constants.MQTT_TOPIC_HUMIDITY
 import com.example.placementapp.data.Constants.MQTT_TOPIC_LIST
 import com.example.placementapp.data.Constants.MQTT_TOPIC_TEMPERATURE
 import com.example.placementapp.data.Constants.MQTT_USER_NAME
 import com.example.placementapp.data.Constants.MQTT_USER_PASSWORD
-import org.eclipse.paho.client.mqttv3.*
-
-import java.lang.IllegalStateException
-import java.lang.Long.parseLong
+import org.eclipse.paho.client.mqttv3.IMqttActionListener
+import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken
+import org.eclipse.paho.client.mqttv3.IMqttToken
+import org.eclipse.paho.client.mqttv3.MqttCallback
+import org.eclipse.paho.client.mqttv3.MqttMessage
 
 class MqttViewModel(): ViewModel() {
-    lateinit var mqttServer: MqttRepository
+    private lateinit var mqttServer: MqttRepository
     var tempText: MutableLiveData<String> = MutableLiveData()
     var humidText: MutableLiveData<String> = MutableLiveData()
     var powerOn: MutableLiveData<Boolean> = MutableLiveData(false)
-    var colorVal: String = "#FFFFFF"
-    var brigVal: Int = 255
+
+    fun mqttInitialize(context: Context) {
+        mqttServer = MqttRepository(context, "${MQTT_SERVER_URI}:${MQTT_SERVER_PORT}", MQTT_CLIENT_ID)
+    }
 
     fun mqttConnect() {
         mqttServer.connect(MQTT_USER_NAME, MQTT_USER_PASSWORD,
@@ -101,11 +106,6 @@ class MqttViewModel(): ViewModel() {
         }
     }
 
-    fun mqttSendColor(hexColor: String = colorVal) {
-        mqttServer.publish(MQTT_TOPIC_COLOR, hexColor)
-        mqttServer.publish(MQTT_TOPIC_BRIGHTNESS, brigVal.toString())
-    }
-
     fun mqttUnsubscribe(topic: String) {
         if (mqttServer.isConnected()) {
             mqttServer.unsubscribe( topic,
@@ -131,22 +131,5 @@ class MqttViewModel(): ViewModel() {
         } else {
             connectionText.text = "Отключено"
         }
-    }
-
-    fun setColorValues(hexColor: String) {
-        when (hexColor.length) {
-            7 -> {
-                brigVal = 0
-                colorVal = hexColor
-            }
-            8,9 -> {
-                brigVal = parseLong(hexColor.substring(1, hexColor.length-6), 16).toInt()
-                colorVal = "#${hexColor.substring(hexColor.length-6, hexColor.length)}"
-            }
-            else -> {
-                throw(IllegalStateException("Wrong hex color format: $hexColor."))
-            }
-        }
-        Log.d("APP_DEBUGGER", "Color determination: brigVal = $brigVal, colorVal = $colorVal")
     }
 }

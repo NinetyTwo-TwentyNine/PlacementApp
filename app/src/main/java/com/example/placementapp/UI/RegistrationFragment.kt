@@ -9,16 +9,16 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
-import com.example.placementapp.R
 import com.example.placementapp.data.AuthenticationStatus
 import com.example.placementapp.data.Constants.APP_MIN_PASSWORD_LENGTH
 import com.example.placementapp.data.Constants.APP_TOAST_PASSWORDS_DONT_MATCH
 import com.example.placementapp.data.Constants.APP_TOAST_PASSWORD_TOO_SHORT
 import com.example.placementapp.data.Constants.APP_TOAST_SIGNUP_FAILED
 import com.example.placementapp.data.Constants.APP_TOAST_SIGNUP_SUCCESS
-import com.example.placementapp.databinding.FragmentRegistrationBinding
 import com.example.placementapp.utils.Utils.getBlankStringsChecker
 import com.example.placementapp.viewmodels.MainActivityViewModel
+import com.example.placementapp.R
+import com.example.placementapp.databinding.FragmentRegistrationBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

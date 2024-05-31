@@ -1,4 +1,4 @@
-package com.example.mqtt
+package com.example.placementapp
 
 import android.content.Context
 import info.mqtt.android.service.Ack
