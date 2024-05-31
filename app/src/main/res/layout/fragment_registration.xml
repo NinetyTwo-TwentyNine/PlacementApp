@@ -3,85 +3,102 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:background="#05080D">
+    android:background="#85e383">
 
-    <TextView
-        android:id="@+id/textView1"
-        style="@style/MainText"
-        android:layout_width="241dp"
-        android:layout_height="46dp"
-        android:text="Регистрация"
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/userEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="40dp"
+        android:backgroundTint="#54a850"
+        android:hint="Почта"
+        android:inputType="text|textEmailAddress"
+        android:paddingStart="5dp"
+        android:textColor="#041805"
+        android:textColorHint="#D3000000"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
-    <Spinner
-        android:id="@+id/selectGroupSpinner"
-        android:layout_width="385dp"
-        android:layout_height="62dp"
-        android:dropDownVerticalOffset="62dp"
-        android:background="@drawable/border_spinner"
-        android:layout_marginTop="80dp"
-        app:layout_constraintTop_toBottomOf="@id/textView1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        />
-
-
-    <EditText
-        android:id="@+id/userEmail"
-        style="@style/EditText"
-        android:layout_marginTop="20dp"
-        android:hint="Введите ваш Email"
-        android:inputType="textEmailAddress"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/selectGroupSpinner" />
-
-    <EditText
+    <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/userPassword1"
-        style="@style/EditText"
-        android:layout_marginTop="20dp"
-        android:hint="Введите ваш пароль"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="40dp"
+        android:backgroundTint="#54a850"
+        android:hint="Введите пароль"
         android:inputType="textPassword"
+        android:paddingStart="5dp"
+        android:textColor="#041805"
+        android:textColorHint="#D3000000"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/userEmail" />
 
-    <EditText
+    <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/userPassword2"
-        style="@style/EditText"
-        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="40dp"
+        android:backgroundTint="#54a850"
         android:hint="Повторите пароль"
         android:inputType="textPassword"
+        android:paddingStart="5dp"
+        android:textColor="#041805"
+        android:textColorHint="#D3000000"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/userPassword1" />
 
-
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/registerButton"
-        style="@style/Button"
-        android:layout_marginTop="40dp"
-        android:text="Зарегестрироваться"
-        android:enabled="false"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userPassword2" />
-
-
-    <TextView
-        android:id="@+id/loginButton"
-        style="@style/ClickableText"
-        android:layout_width="176dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
         android:layout_marginTop="10dp"
-        android:text="Уже есть аккаунт?"
+        android:layout_marginEnd="40dp"
+        android:background="@drawable/button_sign"
+        android:padding="5dp"
+        android:text="Регестрация"
+        android:textAllCaps="false"
+        android:textColor="#f9e0ff"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/registerButton"
-        />
+        app:layout_constraintTop_toBottomOf="@id/userPassword2" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Есть аккаунт? "
+            android:textColor="#041805"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/loginButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Авторизация"
+            android:textColor="#2196F3"
+            android:textSize="20sp" />
+    </LinearLayout>
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -95,6 +112,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
