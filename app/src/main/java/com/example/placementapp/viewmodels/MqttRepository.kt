@@ -1,4 +1,4 @@
-package com.example.placementapp
+package com.example.placementapp.viewmodels
 
 import android.content.Context
 import info.mqtt.android.service.Ack

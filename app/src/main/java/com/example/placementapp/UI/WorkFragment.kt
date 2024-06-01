@@ -6,9 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import com.example.placementapp.MqttViewModel
 import com.example.placementapp.data.Constants.MQTT_TOPIC_POWER
 import com.example.placementapp.databinding.FragmentWorkBinding
+import com.example.placementapp.viewmodels.MqttViewModel
 
 class WorkFragment : Fragment() {
 
@@ -41,7 +41,7 @@ class WorkFragment : Fragment() {
             }
         }
 
-        mqttClient.powerOn.observe(viewLifecycleOwner) {0
+        mqttClient.powerOn.observe(viewLifecycleOwner) {
             binding.powerImage.isEnabled = true
             mqttClient.updateConnectionText(power = it, connectionText = binding.connectionStatusText)
         }
