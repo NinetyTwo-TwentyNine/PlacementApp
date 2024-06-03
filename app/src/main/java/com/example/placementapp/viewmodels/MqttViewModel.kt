@@ -10,6 +10,7 @@ import com.example.placementapp.data.Constants.MQTT_SERVER_PORT
 import com.example.placementapp.data.Constants.MQTT_SERVER_URI
 import com.example.placementapp.data.Constants.MQTT_TOPIC_HUMIDITY
 import com.example.placementapp.data.Constants.MQTT_TOPIC_LIST
+import com.example.placementapp.data.Constants.MQTT_TOPIC_POWER
 import com.example.placementapp.data.Constants.MQTT_TOPIC_TEMPERATURE
 import com.example.placementapp.data.Constants.MQTT_USER_NAME
 import com.example.placementapp.data.Constants.MQTT_USER_PASSWORD
@@ -52,13 +53,21 @@ class MqttViewModel(): ViewModel() {
             },
             object : MqttCallback {
                 override fun messageArrived(topic: String?, message: MqttMessage?) {
-                    if(topic == MQTT_TOPIC_TEMPERATURE) {
-                        powerOn.value = true
-                        updateLiveData(tempText, "$message°C")
-                    }
-                    if(topic == MQTT_TOPIC_HUMIDITY) {
-                        powerOn.value = true
-                        updateLiveData(humidText, "$message%")
+                    when (topic) {
+                        MQTT_TOPIC_POWER -> {
+                            when(message.toString()) {
+                                "0", "false" -> updateLiveData(powerOn, false)
+                                "1", "true" -> updateLiveData(powerOn, true)
+                            }
+                        }
+                        MQTT_TOPIC_TEMPERATURE -> {
+                            powerOn.value = true
+                            updateLiveData(tempText, "$message°C")
+                        }
+                        MQTT_TOPIC_HUMIDITY -> {
+                            powerOn.value = true
+                            updateLiveData(humidText, "$message%")
+                        }
                     }
                 }
 
